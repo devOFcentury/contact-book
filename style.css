@@ -1,5 +1,63 @@
+header, footer {
+     background-color: #2ba8fb;
+     padding: 30px;
+}
+
+header h2, footer p {
+     color: #FFF;
+     font-size: 30px;
+     text-align: center;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .container {
      padding: calc(8px + 1.5625vw);
+}
+
+.filtre {
+     width: 300px;
+     margin: auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+#search {
+     padding: 2px 10px;
+     height: 35px;
+     border: none;
+     background-color: rgb(224, 231, 236);
+     margin-bottom: 5px;
+     border-radius: 5px;
+}
+
+#search:focus {
+     outline: none;
+}
+
+.add-contact-modal {
+     padding: 12.5px 30px;
+     border: 0;
+     border-radius: 100px;
+     background-color: #2ba8fb;
+     color: #ffffff;
+     font-weight: Bold;
+     transition: all 0.5s;
+     -webkit-transition: all 0.5s;
+}
+
+.add-contact-modal:hover {
+     background-color: #6fc5ff;
+     box-shadow: 0 0 20px #6fc5ff50;
+     transform: scale(1.1);
+}
+
+.add-contact-modal:active {
+     background-color: #3d94cf;
+     transition: all 0.25s;
+     -webkit-transition: all 0.25s;
+     box-shadow: none;
+     transform: scale(0.98);
 }
 
 table {
@@ -12,9 +70,10 @@ table {
 }
 
 table thead tr {
-     background-color: #009879;
+     background-color: #6fc5ff;
      color: #ffffff;
      text-align: left;
+     cursor: pointer;
 }
 
 table th,
@@ -32,12 +91,12 @@ table tbody tr:nth-of-type(even) {
 }
 
 table tbody tr:last-of-type {
-     border-bottom: 2px solid #009879;
+     border-bottom: 2px solid #6fc5ff;
 }
 
 table tbody tr:nth-child(even) {
      font-weight: bold;
-     color: #009879;
+     color: #6fc5ff;
 }
 
 
@@ -94,20 +153,24 @@ table tbody tr:nth-child(even) {
      cursor: pointer;
 }
 
-.form, .info {
+.form,
+.info {
      width: 80%;
      display: flex;
      flex-direction: column;
      margin-top: 40px;
 }
 
-.info {align-items: center;}
+.info {
+     align-items: center;
+}
 
-.info > p {
+.info>p {
      font-size: 20px;
 }
 
-.error-form, .error-msg {
+.error-form,
+.error-msg {
      padding: 10px;
      background-color: rgba(255, 7, 58);
      color: white;
@@ -117,7 +180,10 @@ table tbody tr:nth-child(even) {
      text-align: center;
 }
 
-.error-msg {width: 300px; margin: auto;}
+.error-msg {
+     width: 300px;
+     margin: auto;
+}
 
 #modal-create .modal-title,
 #modal-view .modal-title,

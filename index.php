@@ -14,6 +14,9 @@ $contacts = $contact_instance->get_contacts();
 </head>
 
 <body>
+     <header>
+          <h2>Liste de contact</h2>
+     </header>
      <!-- modal d'ajout de contact -->
      <div id="modal-create">
           <div class="modal-create__modal-content">
@@ -92,10 +95,12 @@ $contacts = $contact_instance->get_contacts();
 
 
      <div class="container">
-          <h2>Ma Liste de contact</h2>
-          <button class="add-contact-modal">Ajouter</button>
+          <div class="filtre">
+               <input id="search" type="text" placeholder="Search..">
+               <button class="add-contact-modal">Ajouter un contact</button>
+          </div>
           <div style="overflow-x: auto;">
-               <table>
+               <table id="myTable">
                     <thead>
                          <tr>
                               <th>Nom</th>
@@ -105,13 +110,20 @@ $contacts = $contact_instance->get_contacts();
                               <th>Categories</th>
                          </tr>
                     </thead>
-                    <tbody id="result"></tbody>
+                    <tbody class="contact-table" id="result"></tbody>
                </table>
           </div>
      </div>
+     <footer>
+          <p>Projet Réalisé Par VICH 2023, Dakar-Sénégal</p>
+     </footer>
      <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+     <script src="https://unpkg.com/jquery-tablesortable"></script>
+
      <script>
           $(function() {
+               $('table#myTable').tableSortable();
+
                function getAllContact() {
                     $('.error-msg').remove();
                     $.ajax({
@@ -123,10 +135,9 @@ $contacts = $contact_instance->get_contacts();
                          success: function(response) {
                               var res = $.parseJSON(response);
                               if (res.status == 422) {
-                                   var err = "<p class='error-msg'>" +res.message+ "</p>";
-                                   $($err).insertAfter(".add-contact-modal");
-                              }
-                              else if (res.status == 200) {
+                                   var err = "<p class='error-msg'>" + res.message + "</p>";
+                                   $($err).insertAfter(".filtre");
+                              } else if (res.status == 200) {
                                    $('.error-msg').remove();
                                    $('#result').html(res.data);
                               }
@@ -171,10 +182,9 @@ $contacts = $contact_instance->get_contacts();
                               success: function(response) {
                                    var res = $.parseJSON(response);
                                    if (res.status == 422) {
-                                        var err = "<span class='error-form'>" +res.message + "</span>";
+                                        var err = "<span class='error-form'>" + res.message + "</span>";
                                         $('.form').prepend(err);
-                                   }
-                                   else if (res.status = 200) {
+                                   } else if (res.status = 200) {
                                         $('.form')[0].reset();
                                         $('.error-form').remove();
                                         $('#modal-create').hide('slow');
@@ -187,7 +197,15 @@ $contacts = $contact_instance->get_contacts();
                     }
                });
 
+               $("#search").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $(".contact-table tr").filter(function() {
+                         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+               });
+
           });
+          
 
           // toggle view modal
           $(document).on('click', '.see-contact-modal', function() {
@@ -206,8 +224,8 @@ $contacts = $contact_instance->get_contacts();
                     success: function(response) {
                          var res = $.parseJSON(response);
                          if (res.status == 422) {
-                              var err = "<p class='error-msg'>" +res.message+ "</p>";
-                              $($err).insertAfter(".add-contact-modal");
+                              var err = "<p class='error-msg'>" + res.message + "</p>";
+                              $($err).insertAfter(".filtre");
                               $('#modal-view').hide('slow');
                          } else if (res.status == 200) {
                               $('.info p:first').text(res.data.prenom);
@@ -240,8 +258,8 @@ $contacts = $contact_instance->get_contacts();
                     success: function(response) {
                          var res = $.parseJSON(response);
                          if (res.status == 422) {
-                              var err = "<p class='error-msg'>" +res.message+ "</p>";
-                              $($err).insertAfter(".add-contact-modal");
+                              var err = "<p class='error-msg'>" + res.message + "</p>";
+                              $($err).insertAfter(".filtre");
                               $('#modal-edit').hide('slow');
                          } else if (res.status == 200) {
                               $('#nom-edit').val(res.data.nom);
@@ -283,10 +301,9 @@ $contacts = $contact_instance->get_contacts();
                          success: function(response) {
                               var res = $.parseJSON(response);
                               if (res.status == 422) {
-                                   var err = "<span class='error-form'>" +res.message + "</span>";
+                                   var err = "<span class='error-form'>" + res.message + "</span>";
                                    $('.form').prepend(err);
-                              } 
-                              else if (res.status == 200) {
+                              } else if (res.status == 200) {
                                    $('.form')[0].reset();
                                    $('.error-form').remove();
                                    $('#modal-edit').hide('slow');
@@ -299,10 +316,9 @@ $contacts = $contact_instance->get_contacts();
                                         success: function(response) {
                                              var res = $.parseJSON(response);
                                              if (res.status == 422) {
-                                                  var err = "<p class='error-msg'>" +res.message+ "</p>";
-                                                  $($err).insertAfter(".add-contact-modal");
-                                             }
-                                             else if (res.status == 200) {
+                                                  var err = "<p class='error-msg'>" + res.message + "</p>";
+                                                  $($err).insertAfter(".filtre");
+                                             } else if (res.status == 200) {
                                                   $('#result').html(res.data);
                                              }
                                         }
