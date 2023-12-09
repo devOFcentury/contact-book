@@ -18,7 +18,23 @@ $contacts = $contact_instance->get_contacts();
      <div id="modal-create">
           <div class="modal-create__modal-content">
                <span class="close-modal-create">&times;</span>
-               <p>Create Modal</p>
+               <p>Nouveau Contact</p>
+               <form class="form">
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom" class="input">
+
+                    <label for="prenom">Prénom</label>
+                    <input type="text" name="prenom" id="prenom" class="input">
+
+                    <label>categorie</label>
+                    <select id="categorie" name="categorie" class="select">
+                         <option value="normal">normal</option>
+                         <option value="important">important</option>
+                         <option value="blocked">blocked</option>
+                    </select>
+
+                    <button type="submit" id="create" name="action" value="create">Submit</button>
+               </form>
           </div>
      </div>
 
@@ -37,6 +53,7 @@ $contacts = $contact_instance->get_contacts();
                <p>Edit Modal</p>
           </div>
      </div>
+
 
      <div class="container">
           <h2>Ma Liste de contact</h2>
@@ -57,16 +74,22 @@ $contacts = $contact_instance->get_contacts();
      <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
      <script>
           $(function() {
-               $.ajax({
-                    url: 'ajax.php',
-                    type: 'POST',
-                    data: {action: 'fetch_contacts'},
-                    success: function (response) {
-                         var res = $.parseJSON(response);
-                         $('#result').html(res.data);
-                    }
-               });
-               
+               function getAllContact() {
+                    $.ajax({
+                         url: 'ajax.php',
+                         type: 'POST',
+                         data: {
+                              action: 'fetch_contacts'
+                         },
+                         success: function(response) {
+                              var res = $.parseJSON(response);
+                              $('#result').html(res.data);
+                         }
+                    });
+               }
+
+               getAllContact();
+
                // toggle create modal
                $('.add-contact-modal').on('click', function() {
                     $('#modal-create').show('slow');
@@ -74,7 +97,30 @@ $contacts = $contact_instance->get_contacts();
                          $('#modal-create').hide('slow');
                     });
                });
-               
+
+               // add new contact
+               $('#create').on('click', function(e) {
+                    e.preventDefault();
+                    var nom = $('#nom').val();
+                    var prenom = $('#prenom').val();
+                    var categorie = $('#categorie').val();
+                    var create = $('#create').val();
+                    if (nom != '' && prenom != '' && categorie != '') {
+                         $.ajax({
+                              type: 'POST',
+                              url: 'ajax.php',
+                              data: {nom,prenom,categorie,action: create},
+                              success: function(response) {
+                                   $('#modal-create').hide('slow');
+                                   $('.form')[0].reset();
+                                   getAllContact();
+                              }
+                         });
+                    } else {
+                         $('.form').prepend("<span class='error-form'>Veuillez remplir les champs vides!</span>");
+                    }
+               });
+
           });
 
           // toggle view modal
@@ -85,7 +131,39 @@ $contacts = $contact_instance->get_contacts();
                });
           });
 
-          
+          //add new contact
+          // $(document).on('submit', '#create', function (e) {
+          //      e.preventDefault();
+
+          //      var nom = $('#nom').val();
+          //      var prenom = $('#prenom').val();
+          //      var categorie = $('#categorie').val();
+          //      var create = $('#create').val();
+          //      if (nom != '' && prenom != '' && categorie != '') {
+          //           $.ajax({
+          //                type: 'POST',
+          //                url: 'code.php',
+          //                data: {nom, prenom, categorie, action},
+          //                success: function (response) {
+          //                     var res = $.parseJSON(response);
+          //                     if (res.status == 422) {
+          //                          $('#errorMessage').removeClass('d-none');
+          //                          $('#errorMessage').text(res.message);
+          //                     }
+          //                     else if(res.status == 200) {
+          //                          $('#errorMessage').addClass('d-none');
+          //                          $('#studentAddModal').modal('hide');
+          //                          $('#saveStudent')[0].reset();
+          //                          // rafraichir la table avec l'id #myTable sans recharger la page
+          //                          $('#myTable').load(location.href + " #myTable");
+
+          //                     }
+          //                }
+          //           });
+          //      } else {
+          //           $('.form').prepend = "<span class='error-form'></span>";
+          //      }
+          // })
      </script>
 </body>
 

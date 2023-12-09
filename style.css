@@ -19,18 +19,18 @@ table thead tr {
 
 table th,
 table td {
-    padding: 12px 15px;
+     padding: 12px 15px;
 }
 
 table tbody tr {
      border-bottom: 1px solid #dddddd;
      cursor: pointer;
 }
- 
+
 table tbody tr:nth-of-type(even) {
      background-color: #f3f3f3;
 }
- 
+
 table tbody tr:last-of-type {
      border-bottom: 2px solid #009879;
 }
@@ -42,7 +42,9 @@ table tbody tr:nth-child(even) {
 
 
 
-#modal-create, #modal-view, #modal-edit {
+#modal-create,
+#modal-view,
+#modal-edit {
      display: none;
      position: fixed;
      z-index: 1;
@@ -56,24 +58,101 @@ table tbody tr:nth-child(even) {
      background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-create__modal-content, .modal-view__modal-content, .modal-edit__modal-content {
-     background-color: #fefefe;
+.modal-create__modal-content,
+.modal-view__modal-content,
+.modal-edit__modal-content {
+     background: linear-gradient(180deg, rgb(0, 183, 255) 25%, rgb(255, 255, 255) 20%);
      margin: auto;
      padding: 20px;
-     border: 1px solid #888;
-     width: 80%;
+     width: 70%;
+     min-width: 300px;
+     max-width: 600px;
+     border-radius: 15px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     position: relative;
 }
 
-.close-modal-create, .close-modal-view, .close-modal-edit {
-     color: #aaaaaa;
-     float: right;
-     font-size: 28px;
+.close-modal-create,
+.close-modal-view,
+.close-modal-edit {
+     color: #FFF;
+     align-self: flex-end;
+     font-size: 38px;
      font-weight: bold;
 }
 
-.close-modal-create:hover, .close-modal-view:hover, .close-modal-edit:hover,
-.close-modal-create:focus, .close-modal-view:focus, .close-modal-edit:focus {
-     color: #000;
-     text-decoration: none;
+.close-modal-create:hover,
+.close-modal-view:hover,
+.close-modal-edit:hover,
+.close-modal-create:focus,
+.close-modal-view:focus,
+.close-modal-edit:focus {
      cursor: pointer;
+}
+
+.form {
+     width: 80%;
+     display: flex;
+     flex-direction: column;
+     margin-top: 40px;
+}
+
+.error-form {
+     padding: 10px;
+     background-color: rgba(255, 7, 58);
+     color: white;
+     font-size: 18px;
+     margin: 15px 0;
+     border-radius: 5px;
+     text-align: center;
+}
+
+#modal-create p,
+#modal-view>p,
+#modal-edit p {
+     position: absolute;
+     top: 5%;
+     align-self: center;
+     font-size: 30px;
+     font-weight: 900;
+     color: rgb(255, 255, 255);
+}
+
+#modal-create label,
+#modal-edit label {
+     color: rgb(40, 42, 44);
+     margin-top: 15px;
+     margin-bottom: 5px;
+     font-size: 15px;
+}
+
+#modal-create .input,
+#modal-edit .input,
+#modal-create .select,
+#modal-edit .select {
+     padding: 5px 10px;
+     height: 35px;
+     border: none;
+     background-color: rgb(224, 231, 236);
+}
+
+#modal-create .input:focus,
+#modal-edit .input:focus,
+#modal-create .select:focus,
+#modal-edit .select:focus {
+     outline: none;
+}
+
+#modal-create button,
+#modal-view button,
+#modal-edit button {
+     border: none;
+     height: 35px;
+     margin-top: 30px;
+     background-color: rgb(0, 183, 255);
+     color: white;
+     font-size: 16px;
 }
