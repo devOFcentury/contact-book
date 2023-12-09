@@ -1,0 +1,234 @@
+header, footer {
+     background-color: #2ba8fb;
+     padding: 30px;
+}
+
+header h2, footer p {
+     color: #FFF;
+     font-size: 30px;
+     text-align: center;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+     padding: calc(8px + 1.5625vw);
+}
+
+.filtre {
+     width: 300px;
+     margin: auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+#search {
+     padding: 2px 10px;
+     height: 35px;
+     border: none;
+     background-color: rgb(224, 231, 236);
+     margin-bottom: 5px;
+     border-radius: 5px;
+}
+
+#search:focus {
+     outline: none;
+}
+
+.add-contact-modal {
+     padding: 12.5px 30px;
+     border: 0;
+     border-radius: 100px;
+     background-color: #2ba8fb;
+     color: #ffffff;
+     font-weight: Bold;
+     transition: all 0.5s;
+     -webkit-transition: all 0.5s;
+}
+
+.add-contact-modal:hover {
+     background-color: #6fc5ff;
+     box-shadow: 0 0 20px #6fc5ff50;
+     transform: scale(1.1);
+}
+
+.add-contact-modal:active {
+     background-color: #3d94cf;
+     transition: all 0.25s;
+     -webkit-transition: all 0.25s;
+     box-shadow: none;
+     transform: scale(0.98);
+}
+
+table {
+     border-collapse: collapse;
+     margin: 25px auto;
+     font-size: 0.9em;
+     font-family: sans-serif;
+     width: 70%;
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr {
+     background-color: #6fc5ff;
+     color: #ffffff;
+     text-align: left;
+     cursor: pointer;
+}
+
+table th,
+table td {
+     padding: 12px 15px;
+}
+
+table tbody tr {
+     border-bottom: 1px solid #dddddd;
+     cursor: pointer;
+}
+
+table tbody tr:nth-of-type(even) {
+     background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+     border-bottom: 2px solid #6fc5ff;
+}
+
+table tbody tr:nth-child(even) {
+     font-weight: bold;
+     color: #6fc5ff;
+}
+
+
+
+#modal-create,
+#modal-view,
+#modal-edit {
+     display: none;
+     position: fixed;
+     z-index: 1;
+     padding-top: 100px;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgb(0, 0, 0);
+     background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-create__modal-content,
+.modal-view__modal-content,
+.modal-edit__modal-content {
+     background: linear-gradient(180deg, rgb(0, 183, 255) 25%, rgb(255, 255, 255) 20%);
+     margin: auto;
+     padding: 20px;
+     width: 70%;
+     min-width: 300px;
+     max-width: 600px;
+     border-radius: 15px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     position: relative;
+     transform: translateY(-15%);
+}
+
+.close-modal-create,
+.close-modal-view,
+.close-modal-edit {
+     color: #FFF;
+     align-self: flex-end;
+     font-size: 38px;
+     font-weight: bold;
+}
+
+.close-modal-create:hover,
+.close-modal-view:hover,
+.close-modal-edit:hover,
+.close-modal-create:focus,
+.close-modal-view:focus,
+.close-modal-edit:focus {
+     cursor: pointer;
+}
+
+.form,
+.info {
+     width: 80%;
+     display: flex;
+     flex-direction: column;
+     margin-top: 40px;
+}
+
+.info {
+     align-items: center;
+}
+
+.info>p {
+     font-size: 20px;
+}
+
+.error-form,
+.error-msg {
+     padding: 10px;
+     background-color: rgba(255, 7, 58);
+     color: white;
+     font-size: 18px;
+     margin: 15px 0;
+     border-radius: 5px;
+     text-align: center;
+}
+
+.error-msg {
+     width: 300px;
+     margin: auto;
+}
+
+#modal-create .modal-title,
+#modal-view .modal-title,
+#modal-edit .modal-title {
+     position: absolute;
+     top: 2%;
+     align-self: center;
+     font-size: 30px;
+     font-weight: 900;
+     color: rgb(255, 255, 255);
+}
+
+#modal-create label,
+#modal-edit label {
+     color: rgb(40, 42, 44);
+     margin-top: 15px;
+     margin-bottom: 5px;
+     font-size: 15px;
+}
+
+#modal-create .input,
+#modal-edit .input,
+#modal-create .select,
+#modal-edit .select {
+     padding: 5px 10px;
+     height: 35px;
+     border: none;
+     background-color: rgb(224, 231, 236);
+}
+
+#modal-create .input:focus,
+#modal-edit .input:focus,
+#modal-create .select:focus,
+#modal-edit .select:focus {
+     outline: none;
+}
+
+#modal-create button,
+#modal-view button,
+#modal-edit button {
+     border: none;
+     height: 35px;
+     margin-top: 30px;
+     background-color: rgb(0, 183, 255);
+     color: white;
+     font-size: 16px;
+     cursor: pointer;
+}
