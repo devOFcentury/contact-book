@@ -11,11 +11,10 @@ if (!empty($_POST['action']) and $_POST['action'] == 'fetch_contacts') {
      if (count($contacts) > 0) {
           foreach($contacts as $contact) {
                $result .= "
-                    <tr>
+                    <tr class='look-contact-modal' value='{$contact['id']}'>
                          <td>{$contact['categorie']} </td>
                          <td>{$contact['prenom']}</td>
                          <td>{$contact['categorie']}</td>
-                         <td><button type='button' value='{$contact['id']}'>Voir</button></td>
                     </tr>
                ";
           }
