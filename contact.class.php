@@ -5,6 +5,8 @@ class Contact {
           private $id;
           private $nom;
           private $prenom;
+          private $numero;
+          private $email;
           private $categorie;
 
           private $host = 'localhost';
@@ -46,6 +48,22 @@ class Contact {
           public function set_prenom(string $prenom) {
                $this->prenom = $prenom;
           }
+
+          public function get_numero() {
+               return $this->numero;
+          }
+
+          public function set_numero(string $numero) {
+               $this->numero = $numero;
+          }
+
+          public function get_email() {
+               return $this->email;
+          }
+
+          public function set_email(string $email) {
+               $this->email = $email;
+          }
           
           public function get_categorie() {
                return $this->categorie;
@@ -58,11 +76,13 @@ class Contact {
           // les Méthodes de gestion de contact
 
           public function add_contact() {
-               $query = $this->db->prepare("INSERT INTO contact(nom, prenom, categorie)
-               VALUES(:nom, :prenom, :categorie)");
+               $query = $this->db->prepare("INSERT INTO contact(nom, prenom, numero, email,categorie)
+               VALUES(:nom, :prenom, :numero, :email, :categorie)");
                $query->execute(array(
                     'nom' => $this->nom,
                     'prenom' => $this->prenom,
+                    'numero' => $this->numero,
+                    'email' => $this->email,
                     'categorie' => $this->categorie,
                ));
 
@@ -70,10 +90,12 @@ class Contact {
           }
 
           public function update_contact() {
-               $query = $this->db->prepare("UPDATE contact SET nom=:nom, prenom=:prenom, categorie=:categorie WHERE id=:id");
+               $query = $this->db->prepare("UPDATE contact SET nom=:nom, prenom=:prenom, numero=:numero, email=:email,categorie=:categorie WHERE id=:id");
                $query->execute(array(
                     'nom' => $this->nom,
                     'prenom' => $this->prenom,
+                    'numero' => $this->numero,
+                    'email' => $this->email,
                     'categorie' => $this->categorie,
                     'id' => $this->id,
                ));

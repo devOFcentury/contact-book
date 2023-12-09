@@ -73,6 +73,7 @@ table tbody tr:nth-child(even) {
      justify-content: center;
      align-items: center;
      position: relative;
+     transform: translateY(-15%);
 }
 
 .close-modal-create,
@@ -93,14 +94,20 @@ table tbody tr:nth-child(even) {
      cursor: pointer;
 }
 
-.form {
+.form, .info {
      width: 80%;
      display: flex;
      flex-direction: column;
      margin-top: 40px;
 }
 
-.error-form {
+.info {align-items: center;}
+
+.info > p {
+     font-size: 20px;
+}
+
+.error-form, .error-msg {
      padding: 10px;
      background-color: rgba(255, 7, 58);
      color: white;
@@ -110,11 +117,13 @@ table tbody tr:nth-child(even) {
      text-align: center;
 }
 
-#modal-create p,
-#modal-view>p,
-#modal-edit p {
+.error-msg {width: 300px; margin: auto;}
+
+#modal-create .modal-title,
+#modal-view .modal-title,
+#modal-edit .modal-title {
      position: absolute;
-     top: 5%;
+     top: 2%;
      align-self: center;
      font-size: 30px;
      font-weight: 900;
@@ -155,4 +164,5 @@ table tbody tr:nth-child(even) {
      background-color: rgb(0, 183, 255);
      color: white;
      font-size: 16px;
+     cursor: pointer;
 }
